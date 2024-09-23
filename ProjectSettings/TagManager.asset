@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Lys
+  - Obstacle_Cube
   layers:
   - Default
   - TransparentFX

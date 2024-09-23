@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class obstacle : MonoBehaviour
 {
+    private Vector3 randomPoint;
+    public float delay = 1.0f; // Delay in seconds
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(MoveObstacleWithDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator MoveObstacleWithDelay()
     {
-        Vector3 randomPoint = Random.onUnitSphere * 50;
-        //Debug.Log($"Random point: X={randomPoint.x}, Y={randomPoint.y}, Z={randomPoint.z}");
-        
-        
-
-
+        while (true)
+        {
+            randomPoint = Random.onUnitSphere * 10;
+            transform.position = randomPoint;
+            yield return new WaitForSeconds(delay);
+        }
     }
 }
