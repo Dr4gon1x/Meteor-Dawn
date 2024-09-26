@@ -6,52 +6,64 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     private Vector3 randomPoint;
-    public float delay = 3.0f; // Delay in seconds
+    private float delay = 1.5f; // Delay in seconds
     public GameObject Test;
 
-    public int amount_of_Tests = 8; // Amount of Tests to spawn
-    public float spawnRadius = 6f; // Distance from the planet's surface for spawning Tests
-    public float planetRadius = 5f; // Radius of the planet
-    public float minDistanceBetweenTests = 1.5f; // Minimum distance between Tests to prevent overlap
-    public float maxDistanceFromPlayer = 5f; // Maximum distance from the player to spawn Tests
-     public float lifetime = 3.0f; 
+    private int amount_of_Tests = 15; // Amount of Tests to spawn
+    private float spawnRadius = 6f; // Distance from the planet's surface for spawning Tests
+    private float planetRadius = 5f; // Radius of the planet
+    private float minDistanceBetweenTests = 2.5f; // Minimum distance between Tests to prevent overlap
+    private float maxDistanceFromPlayer = 1.5f; // Maximum distance from the player to spawn Tests
+    private float lifetime = 5f;
 
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
     public List<GameObject> spawnedTests = new List<GameObject>();
-
-    //private List <GameObject> Test_location = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(MoveObstacleWithDelay());
         StartCoroutine(DestoryObstacle());
-    
     }
 
     IEnumerator DestoryObstacle()
     {
-        while (true) 
+        while (true)
         {
-            //int TestsDestroyed = 0; // Counter for destroyed Tests
+            // Decrease the lifetime if there are more than 20 gameobjects
+            if (spawnedTests.Count > 15)
+            {
+                // Sort the spawnedTests based on their distance from the player in descending order
+                spawnedTests.Sort((a, b) => Vector3.Distance(b.transform.position, transform.position).CompareTo(Vector3.Distance(a.transform.position, transform.position)));
+
+                // Remove the 5 farthest objects
+                for (int i = 0; i < 5 && spawnedTests.Count > 0; i++)
+                {
+                    GameObject farthestTest = spawnedTests[0];
+                    spawnedTests.RemoveAt(0);
+                    Destroy(farthestTest);
+                }
+            }
 
             yield return new WaitForSeconds(lifetime);
-        if (spawnedTests.Count > 0)
-        {
-            GameObject firstTest = spawnedTests[0];
-            spawnedTests.Remove(firstTest);
-            Destroy(firstTest);
-            /* TestsDestroyed++;
 
-            if (TestsDestroyed == amount_of_Tests)
+            if (spawnedTests.Count > 0)
             {
-                lifetime -= 1.0f;
+                GameObject firstTest = spawnedTests[0];
+                spawnedTests.Remove(firstTest);
+                Destroy(firstTest);
             }
- */
-        }else
-        {
-            Debug.LogError("No Obstacle to Destroy");
-        }
+            else
+            {
+                Debug.LogError("No Obstacle to Destroy");
+            }
+
+            if (spawnedTests.Count == 0 && spawnedPositions.Count != 0)
+            {
+                GameObject firstTest = spawnedTests[0];
+                spawnedTests.Remove(firstTest);
+                Destroy(firstTest);
+            }
         }
     }
 
@@ -61,7 +73,6 @@ public class Obstacle : MonoBehaviour
 
         while (TestsSpawned < amount_of_Tests) // Check if we have reached the desired number of Tests
         {
-
             // Generate a valid random position on the sphere surface
             Vector3 newPosition = GenerateValidPosition();
 
@@ -78,14 +89,22 @@ public class Obstacle : MonoBehaviour
 
                 spawnedTests.Add(newTest);
 
-                Debug.Log(spawnedTests.Count);
+                /* Debug.Log(spawnedTests.Count); */
 
                 // Increment the counter
                 TestsSpawned++;
-            }
-            
 
-            // Wait for the specified delay before spawning the next Test
+                // when the TestsSpawned is equal to the amount_of_Tests, reset the counter and add a delay
+                if (TestsSpawned == amount_of_Tests)
+                {
+                    int BigDelay = 15;
+                    TestsSpawned = 0;
+                    yield return new WaitForSeconds(BigDelay);
+                }
+
+            }
+
+            // Wait for the specified delay before attempting to spawn the next Test
             yield return new WaitForSeconds(delay);
         }
     }
@@ -96,14 +115,10 @@ public class Obstacle : MonoBehaviour
         for (int i = 0; i < maxAttempts; i++)
         {
             // Generate a random point on the surface of a sphere with radius = planetRadius + spawnRadius
-            Vector3 candidatePosition = Random.onUnitSphere * (planetRadius+ spawnRadius);
+            Vector3 candidatePosition = Random.onUnitSphere * (planetRadius + spawnRadius);
 
             // Check if the candidate position is far enough from all existing Tests
-            if (IsPositionValid(candidatePosition))
-            {
-                return candidatePosition;
-            }
-            if (IsPositionValidForPlayer(candidatePosition))
+            if (IsPositionValid(candidatePosition) && IsPositionValidForPlayer(candidatePosition))
             {
                 return candidatePosition;
             }
@@ -127,12 +142,6 @@ public class Obstacle : MonoBehaviour
 
     bool IsPositionValidForPlayer(Vector3 position)
     {
-        if (Vector3.Distance(position, transform.position) < maxDistanceFromPlayer)
-        {
-            return false; // Position is too close to the player
-        }else
-        {
-            return true;
-        }
+        return Vector3.Distance(position, transform.position) >= maxDistanceFromPlayer;
     }
 }
