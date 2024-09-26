@@ -14,6 +14,8 @@ public class Obstacle : MonoBehaviour
     public float planetRadius = 5f; // Radius of the planet
     public float minDistanceBetweenTests = 0.5f; // Minimum distance between Tests to prevent overlap
 
+    public float maxDistanceFromPlayer = 5f; // Maximum distance from the player to spawn Tests
+
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
 
     //private List <GameObject> Test_location = new List<GameObject>();
@@ -68,6 +70,10 @@ public class Obstacle : MonoBehaviour
             {
                 return candidatePosition;
             }
+            if (IsPositionValidForPlayer(candidatePosition))
+            {
+                return candidatePosition;
+            }
         }
         // Return Vector3.zero if no valid position is found within the max attempts
         return Vector3.zero;
@@ -84,5 +90,16 @@ public class Obstacle : MonoBehaviour
             }
         }
         return true; // Position is valid
+    }
+
+    bool IsPositionValidForPlayer(Vector3 position)
+    {
+        if (Vector3.Distance(position, transform.position) < maxDistanceFromPlayer)
+        {
+            return false; // Position is too close to the player
+        }else
+        {
+            return true;
+        }
     }
 }
