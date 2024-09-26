@@ -9,15 +9,15 @@ public class Obstacle : MonoBehaviour
     public float delay = 3.0f; // Delay in seconds
     public GameObject Test;
 
-    public int amount_of_Tests = 5; // Amount of Tests to spawn
+    public int amount_of_Tests = 8; // Amount of Tests to spawn
     public float spawnRadius = 6f; // Distance from the planet's surface for spawning Tests
     public float planetRadius = 5f; // Radius of the planet
-    public float minDistanceBetweenTests = 0.5f; // Minimum distance between Tests to prevent overlap
+    public float minDistanceBetweenTests = 1.5f; // Minimum distance between Tests to prevent overlap
     public float maxDistanceFromPlayer = 5f; // Maximum distance from the player to spawn Tests
-     public float lifetime = 5.0f; 
+     public float lifetime = 3.0f; 
 
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
-    private List<GameObject> spawnedTests = new List<GameObject>();
+    public List<GameObject> spawnedTests = new List<GameObject>();
 
     //private List <GameObject> Test_location = new List<GameObject>();
 
@@ -31,18 +31,28 @@ public class Obstacle : MonoBehaviour
 
     IEnumerator DestoryObstacle()
     {
-        yield return new WaitForSeconds(lifetime);
+        while (true) 
+        {
+            //int TestsDestroyed = 0; // Counter for destroyed Tests
+
+            yield return new WaitForSeconds(lifetime);
         if (spawnedTests.Count > 0)
         {
             GameObject firstTest = spawnedTests[0];
-            spawnedTests.RemoveAt(0);
-            DestroyImmediate(firstTest, true);
+            spawnedTests.Remove(firstTest);
+            Destroy(firstTest);
+            /* TestsDestroyed++;
+
+            if (TestsDestroyed == amount_of_Tests)
+            {
+                lifetime -= 1.0f;
+            }
+ */
         }else
         {
-            Debug.Log("No Obstacle to Destroy");
+            Debug.LogError("No Obstacle to Destroy");
         }
-
-        Debug.Log("Obstacle Destroyed");
+        }
     }
 
     IEnumerator MoveObstacleWithDelay()
@@ -51,6 +61,7 @@ public class Obstacle : MonoBehaviour
 
         while (TestsSpawned < amount_of_Tests) // Check if we have reached the desired number of Tests
         {
+
             // Generate a valid random position on the sphere surface
             Vector3 newPosition = GenerateValidPosition();
 
@@ -60,12 +71,12 @@ public class Obstacle : MonoBehaviour
                 Quaternion surfaceAlignment = Quaternion.LookRotation(newPosition.normalized, Vector3.up);
 
                 // Spawn the Test at the new position with the calculated alignment
-                Instantiate(Test, newPosition, surfaceAlignment);
+                GameObject newTest = Instantiate(Test, newPosition, surfaceAlignment);
 
                 // Add the new position to the list of spawned positions
                 spawnedPositions.Add(newPosition);
 
-                spawnedTests.Add(Test);
+                spawnedTests.Add(newTest);
 
                 Debug.Log(spawnedTests.Count);
 

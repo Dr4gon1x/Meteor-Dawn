@@ -740,7 +740,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1054,12 +1054,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b391974011ebf45a58502d49088a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
+  delay: 1
   Test: {fileID: 2803644497072995074, guid: 2a9aa88dd862111428b4df3158b520e7, type: 3}
-  amount_of_Tests: 5
+  amount_of_Tests: 15
   spawnRadius: 5.4
   planetRadius: 5
-  minDistanceBetweenTests: 0.5
+  minDistanceBetweenTests: 1
+  maxDistanceFromPlayer: 0.5
+  lifetime: 5
+  spawnedTests: []
 --- !u!1 &1706013791
 GameObject:
   m_ObjectHideFlags: 0
