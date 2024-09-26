@@ -6,15 +6,18 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     private Vector3 randomPoint;
-    public float delay = 1.0f; // Delay in seconds
+    public float delay = 3.0f; // Delay in seconds
     public GameObject Test;
 
     public int amount_of_Tests = 5; // Amount of Tests to spawn
     public float spawnRadius = 6f; // Distance from the planet's surface for spawning Tests
     public float planetRadius = 5f; // Radius of the planet
     public float minDistanceBetweenTests = 0.5f; // Minimum distance between Tests to prevent overlap
+    public float maxDistanceFromPlayer = 5f; // Maximum distance from the player to spawn Tests
+     public float lifetime = 5.0f; 
 
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
+    private List<GameObject> spawnedTests = new List<GameObject>();
 
     //private List <GameObject> Test_location = new List<GameObject>();
 
@@ -22,7 +25,24 @@ public class Obstacle : MonoBehaviour
     void Start()
     {
         StartCoroutine(MoveObstacleWithDelay());
+        StartCoroutine(DestoryObstacle());
     
+    }
+
+    IEnumerator DestoryObstacle()
+    {
+        yield return new WaitForSeconds(lifetime);
+        if (spawnedTests.Count > 0)
+        {
+            GameObject firstTest = spawnedTests[0];
+            spawnedTests.RemoveAt(0);
+            DestroyImmediate(firstTest, true);
+        }else
+        {
+            Debug.Log("No Obstacle to Destroy");
+        }
+
+        Debug.Log("Obstacle Destroyed");
     }
 
     IEnumerator MoveObstacleWithDelay()
@@ -44,6 +64,10 @@ public class Obstacle : MonoBehaviour
 
                 // Add the new position to the list of spawned positions
                 spawnedPositions.Add(newPosition);
+
+                spawnedTests.Add(Test);
+
+                Debug.Log(spawnedTests.Count);
 
                 // Increment the counter
                 TestsSpawned++;
@@ -68,6 +92,10 @@ public class Obstacle : MonoBehaviour
             {
                 return candidatePosition;
             }
+            if (IsPositionValidForPlayer(candidatePosition))
+            {
+                return candidatePosition;
+            }
         }
         // Return Vector3.zero if no valid position is found within the max attempts
         return Vector3.zero;
@@ -84,5 +112,16 @@ public class Obstacle : MonoBehaviour
             }
         }
         return true; // Position is valid
+    }
+
+    bool IsPositionValidForPlayer(Vector3 position)
+    {
+        if (Vector3.Distance(position, transform.position) < maxDistanceFromPlayer)
+        {
+            return false; // Position is too close to the player
+        }else
+        {
+            return true;
+        }
     }
 }
