@@ -25,15 +25,15 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position += transform.forward * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             transform.position -= transform.forward * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             transform.position -= transform.right * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right * speed * Time.deltaTime;
         }

@@ -6,14 +6,14 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     private Vector3 randomPoint;
-    private float delay = 1.5f; // Delay in seconds
+    private float delay = 1f; // Delay in seconds
     public GameObject Sten;
 
-    private int amount_of_Sten = 15; // Amount of Sten to spawn
+    private int amount_of_Sten = 20; // Amount of Sten to spawn
     private float spawnRadius = 5.01f; // Distance from the planet's surface for spawning Sten
     private float planetRadius = 5f; // Radius of the planet
     private float minDistanceBetweenSten = 2.5f; // Minimum distance between Sten to prevent overlap
-    private float maxDistanceFromPlayer = 1.5f; // Maximum distance from the player to spawn Sten
+    private float maxDistanceFromPlayer = 1f; // Maximum distance from the player to spawn Sten
     private float lifetime = 5f;
 
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
