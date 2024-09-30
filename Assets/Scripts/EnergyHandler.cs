@@ -49,19 +49,23 @@ public class EnergyHandler : MonoBehaviour
         EnergyBar.GetComponent<Image>().fillAmount = Energy / 100;
     }
     
-    void OnTriggerEnter (Collider Player)
+    void OnTriggerEnter (Collider other)
     {
-        
-        IsInside = true;
-        Debug.LogError("Player entered");
+        if(other.gameObject.CompareTag("Player")) {
+             IsInside = true;
+            Debug.LogError("Player entered");
+        }
+       
         // Light.GetComponent<Light>().color = Color.green;
     }
 
-    void OnTriggerExit (Collider Player)
+    void OnTriggerExit (Collider other)
     {
-        IsInside = false;
-        Debug.LogError("Player exited");
         // Light.GetComponent<Light>().color = Color.red;
+         if(other.gameObject.CompareTag("Player")) {
+             IsInside = false;
+            Debug.LogError("Player entered");
+        }
     }
 
     void ResizeAndPos()
