@@ -9,7 +9,7 @@ public class Meteor : MonoBehaviour
         if (other.CompareTag("Meteor"))
         {
             Destroy(other.gameObject);
-            Debug.Log("Game Over");
+            /* Debug.Log("Game Over"); */
         }
 
     }
