@@ -5,11 +5,10 @@ using UnityEngine.Animations;
 
 public class MeteorHandler : MonoBehaviour
 {
-
-    int childCount;
     float time = 0;
 
     public float speed = 10f;
+    public float amountPerSecond = 10;
     public GameObject meteorPrefab;
     public GameObject target;
 
@@ -19,14 +18,14 @@ public class MeteorHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        childCount = this.transform.childCount;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
-        if (time > 1)
+        if (time >= (1f / amountPerSecond))
         {
             spawnNewMeteor();
             time = 0;
@@ -49,12 +48,8 @@ public class MeteorHandler : MonoBehaviour
 
     void spawnNewMeteor()
     {
-        int randomTal = Random.Range(0, childCount);
-        Transform randomChild = this.transform.GetChild(randomTal);
-
-        newMeteor = Instantiate(meteorPrefab, randomChild);
-        randomChild.transform.DetachChildren();
-        newMeteor.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+        Vector3 pos = Random.onUnitSphere * 30f;
+        newMeteor = Instantiate(meteorPrefab, pos, Quaternion.identity);
         //newMeteor.transform.LookAt(target.transform);
 
         newMeteorPrefabs.Add(newMeteor);
