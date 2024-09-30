@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63ac4eacc867ad40b10e3caff397994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleTurnSharpness: 40
+  angleTurnSharpness: 45
   startSpeed: 25
 --- !u!1 &963194225
 GameObject:
