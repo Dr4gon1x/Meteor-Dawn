@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b391974011ebf45a58502d49088a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sten: {fileID: 0}
+  Sten: {fileID: 919132149155446097, guid: bb977605349ad70449f7f504f77590b3, type: 3}
   spawnedSten: []
 --- !u!4 &1758865872
 Transform:
