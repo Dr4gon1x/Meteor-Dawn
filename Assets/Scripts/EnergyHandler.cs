@@ -51,6 +51,7 @@ public class EnergyHandler : MonoBehaviour
     
     void OnTriggerEnter (Collider Player)
     {
+        
         IsInside = true;
         Debug.LogError("Player entered");
         // Light.GetComponent<Light>().color = Color.green;
