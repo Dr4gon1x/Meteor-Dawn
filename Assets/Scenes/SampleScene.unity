@@ -200,10 +200,12 @@ MonoBehaviour:
   Light: {fileID: 705507993}
   LightHolder: {fileID: 808753725}
   EnergyBar: {fileID: 1452610145}
+  Player: {fileID: 573501958}
   hitboxDecrease: 0.85
   Energy: 100
   EnergyIncrease: 10
   EnergyDecrease: 15
+  IsInside: 0
 --- !u!1 &334021845
 GameObject:
   m_ObjectHideFlags: 0
