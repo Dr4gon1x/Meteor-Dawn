@@ -1,4 +1,4 @@
-/* using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -83,7 +83,7 @@ public class EnergyHandler : MonoBehaviour
         {
             /* Jeg orkede ikke at skrive et script for hvis lyskeglens sider ikke r�r planeten. 
              * Jeg g�r ikke ud fra at lyset skal v�re s� stort. */
-       /*      energyDiameter = 0;
+            energyDiameter = 0;
             energyPos = 0;
         } else
         {
@@ -97,4 +97,3 @@ public class EnergyHandler : MonoBehaviour
         this.transform.localPosition = new UnityEngine.Vector3(0, energyPos, 0);
     }
 }
- */
