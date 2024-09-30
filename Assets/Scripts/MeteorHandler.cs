@@ -9,11 +9,16 @@ public class MeteorHandler : MonoBehaviour
 
     public float speed = 10f;
     public float amountPerSecond = 10;
+
     public GameObject meteorPrefab;
-    public GameObject target;
+    public GameObject meteorTarget;
+    public GameObject planet;
 
     private GameObject newMeteor;
-    public List<GameObject> newMeteorPrefabs = new List<GameObject>();
+    public List<GameObject> meteorPrefabs = new List<GameObject>();
+
+    private GameObject newTarget;
+    public List<GameObject> targetPrefabs = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -31,27 +36,33 @@ public class MeteorHandler : MonoBehaviour
             time = 0;
         }
 
-        for (int i = 0; i < newMeteorPrefabs.Count; i++)
+        for (int i = 0; i < meteorPrefabs.Count; i++)
         {
-            if (newMeteorPrefabs[i] != null)
+            if (meteorPrefabs[i] != null)
             {
-                Transform pos = newMeteorPrefabs[i].transform;
+                Transform pos = meteorPrefabs[i].transform;
                 //newMeteorPrefabs[i].transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                pos.position = Vector3.MoveTowards(pos.position, target.transform.position, speed * Time.deltaTime);
+                pos.position = Vector3.MoveTowards(pos.position, planet.transform.position, speed * Time.deltaTime);
             }
             else
             {
-                newMeteorPrefabs.Remove(newMeteorPrefabs[i]);
+                Destroy(targetPrefabs[i]);
+                targetPrefabs.Remove(targetPrefabs[i]);
+                meteorPrefabs.Remove(meteorPrefabs[i]);
             }
         }
     }
 
     void spawnNewMeteor()
     {
-        Vector3 pos = Random.onUnitSphere * 30f;
-        newMeteor = Instantiate(meteorPrefab, pos, Quaternion.identity);
-        //newMeteor.transform.LookAt(target.transform);
+        Vector3 targetPos = Random.onUnitSphere * 10f;
+        Vector3 spawnPos = targetPos * 3;
+        newTarget = Instantiate(meteorTarget, targetPos, Quaternion.identity);
+        newMeteor = Instantiate(meteorPrefab, spawnPos, Quaternion.identity);
+        //newMeteor.transform.LookAt(planet.transform);
 
-        newMeteorPrefabs.Add(newMeteor);
+        newTarget.transform.LookAt(planet.transform);
+        targetPrefabs.Add(newTarget);
+        meteorPrefabs.Add(newMeteor);
     }
 }
