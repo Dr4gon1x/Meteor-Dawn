@@ -15,11 +15,13 @@ public class EnergyHandler : MonoBehaviour
     public GameObject LightHolder;
     public GameObject EnergyBar;
 
+    public GameObject Player;
+
     public float hitboxDecrease = 0.85f;
     public float Energy = 100;
     public float EnergyIncrease = 10;
     public float EnergyDecrease = 15;
-    bool IsInside;
+    public bool IsInside;
 
     void Start()
     {
@@ -47,15 +49,17 @@ public class EnergyHandler : MonoBehaviour
         EnergyBar.GetComponent<Image>().fillAmount = Energy / 100;
     }
     
-    void OnTriggerEnter (Collider other)
+    void OnTriggerEnter (Collider Player)
     {
         IsInside = true;
+        Debug.LogError("Player entered");
         // Light.GetComponent<Light>().color = Color.green;
     }
 
-    void OnTriggerExit (Collider other)
+    void OnTriggerExit (Collider Player)
     {
         IsInside = false;
+        Debug.LogError("Player exited");
         // Light.GetComponent<Light>().color = Color.red;
     }
 
