@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 166925172}
   - component: {fileID: 166925175}
   - component: {fileID: 166925174}
-  - component: {fileID: 166925173}
+  - component: {fileID: 166925176}
   m_Layer: 0
   m_Name: EnergyHandler
   m_TagString: Untagged
@@ -156,26 +156,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 808753728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &166925173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166925171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747118a014b6d4c4fbb275ff12a42eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Light: {fileID: 705507993}
-  LightHolder: {fileID: 808753725}
-  EnergyBar: {fileID: 1452610145}
-  hitboxDecrease: 0.85
-  Energy: 100
-  EnergyIncrease: 5
-  EnergyDecrease: 15
-  IsInside: 0
 --- !u!135 &166925174
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -205,6 +185,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166925171}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &166925176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166925171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819f871c2b18cad48855cb072e431000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Light: {fileID: 705507993}
+  LightHolder: {fileID: 808753725}
+  EnergyBar: {fileID: 1452610145}
+  hitboxDecrease: 0.85
+  Energy: 100
+  EnergyIncrease: 10
+  EnergyDecrease: 15
 --- !u!1 &334021845
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63ac4eacc867ad40b10e3caff397994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleTurnSharpness: 45
+  angleTurnSharpness: 40
   startSpeed: 25
 --- !u!1 &963194225
 GameObject:
@@ -1247,6 +1246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  amountPerSecond: 5
   meteorPrefab: {fileID: 3209039089097668463, guid: 26426a04b5883f44ca0be248d1f974b7, type: 3}
   target: {fileID: 1350476436}
   newMeteorPrefabs: []
