@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc989a20c7a7fd34ba1bdae7765547ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -11
+  gravity: -10
 --- !u!114 &1350476442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,8 +1335,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.2843215
-  m_Center: {x: 0, y: 0.088146, z: -0.0000005364418}
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!33 &1261486219815585225
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1368,7 +1368,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4330ad3d07a7f9a4aa4dc4547e4ad3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 10
 --- !u!64 &8322412442386372917
 MeshCollider:
   m_ObjectHideFlags: 0
