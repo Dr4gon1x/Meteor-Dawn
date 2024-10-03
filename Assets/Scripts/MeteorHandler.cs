@@ -5,14 +5,20 @@ using UnityEngine.Animations;
 
 public class MeteorHandler : MonoBehaviour
 {
-    float time = 0;
+    // ----------------------------------------------------------------
 
     public float speed = 10f;
-    public float amountPerSecond = 10;
+    public float spawnDistance = 20f;
+    public float amountPerSecond = 5f;
+    public float despawnTime = 1f;
 
     public GameObject meteorPrefab;
     public GameObject meteorTarget;
     public GameObject planet;
+
+    // ----------------------------------------------------------------
+
+    private float time = 0;
 
     private GameObject newMeteor;
     public List<GameObject> meteorPrefabs = new List<GameObject>();
@@ -20,13 +26,11 @@ public class MeteorHandler : MonoBehaviour
     private GameObject newTarget;
     public List<GameObject> targetPrefabs = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private GameObject deadMeteor;
+    public List<GameObject> deadPrefabs = new List<GameObject>();
 
-    }
+    // ----------------------------------------------------------------
 
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
@@ -36,12 +40,31 @@ public class MeteorHandler : MonoBehaviour
             time = 0;
         }
 
+        meteorTick();
+    }
+
+    void spawnNewMeteor()
+    {
+        // Give 
+        Vector3 targetPos = Random.onUnitSphere * 10f;
+        Vector3 spawnPos = targetPos * 3;
+
+        // Spawn meteor and target
+        newTarget = Instantiate(meteorTarget, targetPos, Quaternion.identity);
+        newMeteor = Instantiate(meteorPrefab, spawnPos, Quaternion.identity);
+
+        newTarget.transform.LookAt(planet.transform);
+        targetPrefabs.Add(newTarget);
+        meteorPrefabs.Add(newMeteor);
+    }
+
+    void meteorTick()
+    {
         for (int i = 0; i < meteorPrefabs.Count; i++)
         {
             if (meteorPrefabs[i] != null)
             {
                 Transform pos = meteorPrefabs[i].transform;
-                //newMeteorPrefabs[i].transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 pos.position = Vector3.MoveTowards(pos.position, planet.transform.position, speed * Time.deltaTime);
             }
             else
@@ -51,18 +74,5 @@ public class MeteorHandler : MonoBehaviour
                 meteorPrefabs.Remove(meteorPrefabs[i]);
             }
         }
-    }
-
-    void spawnNewMeteor()
-    {
-        Vector3 targetPos = Random.onUnitSphere * 10f;
-        Vector3 spawnPos = targetPos * 3;
-        newTarget = Instantiate(meteorTarget, targetPos, Quaternion.identity);
-        newMeteor = Instantiate(meteorPrefab, spawnPos, Quaternion.identity);
-        //newMeteor.transform.LookAt(planet.transform);
-
-        newTarget.transform.LookAt(planet.transform);
-        targetPrefabs.Add(newTarget);
-        meteorPrefabs.Add(newMeteor);
     }
 }
