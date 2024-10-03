@@ -1468,6 +1468,7 @@ Camera:
   m_GameObject: {fileID: 3810056072422850706}
   m_Enabled: 1
   serializedVersion: 2
+<<<<<<< HEAD
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
@@ -1552,6 +1553,81 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+=======
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2264469887831142254, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: planet
+      value: 
+      objectReference: {fileID: 1350476436}
+    - target: {fileID: 4404286478855210384, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787044553053454915, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234382989786504983, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234382989786504983, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969389106118087752, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: attractor
+      value: 
+      objectReference: {fileID: 1350476441}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184038193108497743, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0d8855d85dc43d4ab8336e296bcd9e9, type: 3}
+>>>>>>> parent of 0463ee7 (tilføjet meteor collider script til spiller)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
