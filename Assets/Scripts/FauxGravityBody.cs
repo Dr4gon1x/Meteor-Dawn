@@ -3,18 +3,18 @@ using UnityEngine;
 public class FauxGravityBody : MonoBehaviour
 {
     public FauxGravityAdd attractor;
-    private Transform myTransform;
+    private Rigidbody rb;
    
     void Start()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        GetComponent<Rigidbody>().useGravity = false;
-        myTransform = transform;
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.useGravity = false;
     }
 
    
     void Update()
     {
-          attractor.Attract(myTransform);   
+          attractor.Attract(rb);   
     }
 }

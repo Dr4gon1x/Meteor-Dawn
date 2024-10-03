@@ -361,7 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4330ad3d07a7f9a4aa4dc4547e4ad3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 25
+  rb: {fileID: 573501966}
 --- !u!1 &653202836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,8 +1055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b391974011ebf45a58502d49088a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Test: {fileID: 2803644497072995074, guid: 2a9aa88dd862111428b4df3158b520e7, type: 3}
-  spawnedTests: []
+  Sten: {fileID: 0}
+  spawnedSten: []
 --- !u!1 &1706013791
 GameObject:
   m_ObjectHideFlags: 0

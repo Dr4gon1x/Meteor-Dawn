@@ -1,16 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FauxGravityAdd : MonoBehaviour
 {
     public float gravity = -10f;
-    public void Attract(Transform body)
+    public void Attract(Rigidbody body)
     {
         Vector3 gravityUp = (body.position - transform.position).normalized;
-        Vector3 bodyUp = body.up;
+        Vector3 bodyUp = body.transform.up;
 
-        body.GetComponent<Rigidbody>().AddForce(gravityUp * gravity);
+        Debug.Log(gravityUp.magnitude);
+        body.AddForce(gravityUp * gravity);
 
-        Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * body.rotation;
-        body.rotation = Quaternion.Slerp(body.rotation, targetRotation, 50f * Time.deltaTime);
+        body.rotation = Quaternion.FromToRotation(bodyUp,gravityUp) * body.rotation;
     }
 }
