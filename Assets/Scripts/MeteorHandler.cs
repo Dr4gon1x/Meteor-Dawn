@@ -52,6 +52,7 @@ public class MeteorHandler : MonoBehaviour
         // Spawn meteor and target
         newTarget = Instantiate(meteorTarget, targetPos, Quaternion.identity);
         newMeteor = Instantiate(meteorPrefab, spawnPos, Quaternion.identity);
+        newMeteor.gameObject.tag="Meteor";
 
         newTarget.transform.LookAt(planet.transform);
         targetPrefabs.Add(newTarget);

@@ -310,7 +310,7 @@ MonoBehaviour:
   spawnDistance: 20
   amountPerSecond: 5
   despawnTime: 1
-  meteorPrefab: {fileID: 3209039089097668463, guid: 26426a04b5883f44ca0be248d1f974b7, type: 3}
+  meteorPrefab: {fileID: 6290171594966892952, guid: 21b424ff3bdacd54a96896c42e6bb9f2, type: 3}
   meteorTarget: {fileID: 3698277972899086417, guid: f3b503e7b97d392439c6acc9b051db66, type: 3}
   planet: {fileID: 1350476436}
   meteorPrefabs: []
