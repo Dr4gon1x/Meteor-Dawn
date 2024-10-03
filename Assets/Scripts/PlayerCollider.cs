@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteorCollider : MonoBehaviour
+public class PlayerCollider : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
