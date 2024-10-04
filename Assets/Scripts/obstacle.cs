@@ -19,14 +19,16 @@ public class Obstacle : MonoBehaviour
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
     public List<GameObject> spawnedSten = new List<GameObject>();
 
+    private int score = 0; // Score variable
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(MoveObstacleWithDelay());
-        StartCoroutine(DestoryObstacle());
+        StartCoroutine(DestroyObstacle());
     }
 
-    IEnumerator DestoryObstacle()
+    IEnumerator DestroyObstacle()
     {
         while (true)
         {
@@ -71,8 +73,11 @@ public class Obstacle : MonoBehaviour
     {
         int StenSpawned = 0; // Counter for spawned Sten
 
-        while (StenSpawned < amount_of_Sten) // Check if we have reached the desired number of Sten
+        while (true) // Infinite loop to keep spawning Sten
         {
+            // Adjust the amount of Sten and delay based on the score
+            AdjustSpawnParameters();
+
             // Generate a valid random position on the sphere surface
             Vector3 newPosition = GenerateValidPosition();
 
@@ -89,8 +94,6 @@ public class Obstacle : MonoBehaviour
 
                 spawnedSten.Add(newTest);
 
-                /* Debug.Log(spawnedSten.Count); */
-
                 // Increment the counter
                 StenSpawned++;
 
@@ -101,12 +104,31 @@ public class Obstacle : MonoBehaviour
                     StenSpawned = 0;
                     yield return new WaitForSeconds(BigDelay);
                 }
-
             }
 
             // Wait for the specified delay before attempting to spawn the next Test
             yield return new WaitForSeconds(delay);
         }
+    }
+
+    void AdjustSpawnParameters()
+    {
+        if (score >= 50)
+        {
+            amount_of_Sten = 30;
+            delay = 0.5f;
+        }
+        else if (score >= 100)
+        {
+            amount_of_Sten = 40;
+            delay = 0.25f;
+        }
+        else if (score >= 150)
+        {
+            amount_of_Sten = 50;
+            delay = 0.1f;
+        }
+        // Add more conditions as needed
     }
 
     Vector3 GenerateValidPosition()
@@ -143,5 +165,11 @@ public class Obstacle : MonoBehaviour
     bool IsPositionValidForPlayer(Vector3 position)
     {
         return Vector3.Distance(position, transform.position) >= maxDistanceFromPlayer;
+    }
+
+    // Method to update the score (you can call this method from other scripts)
+    public void UpdateScore(int newScore)
+    {
+        score = newScore;
     }
 }
