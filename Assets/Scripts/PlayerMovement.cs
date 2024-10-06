@@ -43,15 +43,4 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    
-    // Check if the player collides with an object tagged "Sten"
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Sten")
-        {
-            Debug.LogError("Sten is moving");
-        }
-    }
-
-    
 }
