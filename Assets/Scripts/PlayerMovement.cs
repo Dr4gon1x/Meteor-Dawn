@@ -41,5 +41,17 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
         }
+
     }
+    
+    // Check if the player collides with an object tagged "Sten"
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Sten")
+        {
+            Debug.LogError("Sten is moving");
+        }
+    }
+
+    
 }
