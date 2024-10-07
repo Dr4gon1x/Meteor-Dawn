@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnergyHandler : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class EnergyHandler : MonoBehaviour
             if(Energy<=0){
                 Energy = 0;
                 Time.timeScale=0;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
 
