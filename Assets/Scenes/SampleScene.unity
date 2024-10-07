@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sten: {fileID: 7653614428978702252, guid: c5e5ac3213572ca49a40fafb17af59ec, type: 3}
-  planet: {fileID: 0}
+  planet: {fileID: 1350476436}
   spawnedSten: []
 --- !u!1 &334021845
 GameObject:
@@ -1551,20 +1551,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7569703644932148302, guid: c5e5ac3213572ca49a40fafb17af59ec, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7569703644932148302, guid: c5e5ac3213572ca49a40fafb17af59ec, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7569703644932148302, guid: c5e5ac3213572ca49a40fafb17af59ec, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7569703644932148302, guid: c5e5ac3213572ca49a40fafb17af59ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7653614428978702252, guid: c5e5ac3213572ca49a40fafb17af59ec, type: 3}
       propertyPath: m_Name
