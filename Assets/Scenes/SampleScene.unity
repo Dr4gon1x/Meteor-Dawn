@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   spawnDistance: 20
-  amountPerSecond: 5
+  amountPerSecond: 100
   despawnTime: 1
   targetScaleOnImpact: 1.5
   meteorPrefab: {fileID: 6290171594966892952, guid: 21b424ff3bdacd54a96896c42e6bb9f2, type: 3}
