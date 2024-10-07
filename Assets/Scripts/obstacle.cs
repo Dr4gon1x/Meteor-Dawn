@@ -8,6 +8,7 @@ public class Obstacle : MonoBehaviour
     private Vector3 randomPoint;
     private float delay = 1f; // Delay in seconds
     public GameObject Sten;
+    public GameObject planet;
 
     private int amount_of_Sten = 20; // Amount of Sten to spawn
     private float spawnRadius = 5.01f; // Distance from the planet's surface for spawning Sten
@@ -88,6 +89,7 @@ public class Obstacle : MonoBehaviour
 
                 // Spawn the Test at the new position with the calculated alignment
                 GameObject newTest = Instantiate(Sten, newPosition, surfaceAlignment);
+                newTest.transform.LookAt(planet.transform);
 
                 // Add the new position to the list of spawned positions
                 spawnedPositions.Add(newPosition);
