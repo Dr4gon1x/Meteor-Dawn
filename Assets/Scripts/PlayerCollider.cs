@@ -9,7 +9,6 @@ public class PlayerCollider : MonoBehaviour
     {
         if (other.CompareTag("Meteor"))
         {
-            Time.timeScale = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

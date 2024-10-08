@@ -36,7 +36,6 @@ public class EnergyHandler : MonoBehaviour
             Energy -=EnergyDecrease*Time.deltaTime;
             if(Energy<=0){
                 Energy = 0;
-                Time.timeScale=0;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
