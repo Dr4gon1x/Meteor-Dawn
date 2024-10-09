@@ -17,8 +17,8 @@ public class EnergyHandler : MonoBehaviour
     public float EnergyIncrease = 10;
     public float EnergyDecrease = 15;
     public float MeteorDamage = 20;
-    public bool IsInside;
-
+    
+    private bool IsInside;
     private float fovValue;
 
     void Start()
@@ -56,7 +56,6 @@ public class EnergyHandler : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player")) {
              IsInside = true;
-            Debug.LogError("Player entered");
         }
        
         // Light.GetComponent<Light>().color = Color.green;
@@ -67,7 +66,6 @@ public class EnergyHandler : MonoBehaviour
         // Light.GetComponent<Light>().color = Color.red;
          if(other.gameObject.CompareTag("Player")) {
              IsInside = false;
-            Debug.LogError("Player entered");
         }
     }
 
