@@ -51,7 +51,11 @@ public class MeteorHandler : MonoBehaviour
         time += Time.deltaTime;
         if (time >= (1f / amountPerSecond))
         {
-            spawnNewMeteor();
+            for (int i = 0; i < Mathf.Round(time / (1f / amountPerSecond)); i++)
+            {
+                spawnNewMeteor();
+            }
+
             time = 0;
         }
 
