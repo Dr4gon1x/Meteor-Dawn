@@ -39,10 +39,12 @@ public class EnergyHandler : MonoBehaviour
         }
         else if(!IsInside){
             Energy -=EnergyDecrease*Time.deltaTime;
-            if(Energy<=0){
-                Energy = 0;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+        }
+
+        if (Energy <= 0)
+        {
+            Energy = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         EnergyBar.GetComponent<Image>().fillAmount = Energy / 100;
