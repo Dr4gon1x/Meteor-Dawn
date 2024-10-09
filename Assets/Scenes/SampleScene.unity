@@ -420,7 +420,6 @@ MonoBehaviour:
   EnergyIncrease: 5
   EnergyDecrease: 20
   MeteorDamage: 40
-  IsInside: 0
 --- !u!1 &271512049
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b391974011ebf45a58502d49088a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sten: {fileID: 966792725838770844, guid: d0c29c7b5f10a1245ba3b8747b3e8ec0, type: 3}
+  Sten: {fileID: 4256151119022139727, guid: 6e8dfdac729185645bc8e0c581a85b5e, type: 3}
   planet: {fileID: 1350476436}
   spawnedSten: []
 --- !u!1 &334021845
