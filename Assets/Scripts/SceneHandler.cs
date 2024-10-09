@@ -26,7 +26,6 @@ public class SceneHandler : MonoBehaviour
     public void menuQuitGame()
     {
         Debug.Log("MenuQUIT");
-        Debug.Log(Score.score);
         Application.Quit();
     }
 }
