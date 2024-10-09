@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FresnelPower: 100
+    - _FresnelPower: 50
     - _Metalic: 0
     - _NoiceDesolve: 2.26
     - _NoiceScale: 39.72
