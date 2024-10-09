@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnergyHandler : MonoBehaviour
 {
@@ -9,17 +10,21 @@ public class EnergyHandler : MonoBehaviour
     public GameObject LightHolder;
     public GameObject EnergyBar;
 
-    public GameObject Player;
+    public Camera Camera;
 
     public float hitboxDecrease = 0.85f;
     public float Energy = 100;
     public float EnergyIncrease = 10;
     public float EnergyDecrease = 15;
+    public float MeteorDamage = 20;
     public bool IsInside;
+
+    private float fovValue;
 
     void Start()
     {
         ResizeAndPos();
+        UpdateFOV();
     }
 
     void Update()
@@ -41,6 +46,10 @@ public class EnergyHandler : MonoBehaviour
         }
 
         EnergyBar.GetComponent<Image>().fillAmount = Energy / 100;
+
+        MeteorCollide();
+
+        UpdateFOV();
     }
     
     void OnTriggerEnter (Collider other)
@@ -93,5 +102,20 @@ public class EnergyHandler : MonoBehaviour
 
         this.transform.localScale = new UnityEngine.Vector3(energyDiameter, energyDiameter, energyDiameter);
         this.transform.localPosition = new UnityEngine.Vector3(0, energyPos, 0);
+    }
+
+    void UpdateFOV()
+    {
+        float fovValue = Energy / (20/3) + 45;
+
+        Camera.fieldOfView = fovValue;
+    }
+
+    void MeteorCollide()
+    {
+        if (GameObject.Find("Player").GetComponent<PlayerCollider>().hit)
+        {
+            Energy -= MeteorDamage;
+        }
     }
 }
