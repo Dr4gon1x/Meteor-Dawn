@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
@@ -63,9 +62,12 @@ public class Obstacle : MonoBehaviour
 
             if (spawnedSten.Count == 0 && spawnedPositions.Count != 0)
             {
-                GameObject firstTest = spawnedSten[0];
-                spawnedSten.Remove(firstTest);
-                Destroy(firstTest);
+                if (spawnedSten.Count > 0)
+                {
+                    GameObject firstTest = spawnedSten[0];
+                    spawnedSten.Remove(firstTest);
+                    Destroy(firstTest);
+                }
             }
         }
     }
@@ -102,7 +104,7 @@ public class Obstacle : MonoBehaviour
                 // when the StenSpawned is equal to the amount_of_Sten, reset the counter and add a delay
                 if (StenSpawned == amount_of_Sten)
                 {
-                    int BigDelay = 15;
+                    int BigDelay = 5;
                     StenSpawned = 0;
                     yield return new WaitForSeconds(BigDelay);
                 }
@@ -167,11 +169,5 @@ public class Obstacle : MonoBehaviour
     bool IsPositionValidForPlayer(Vector3 position)
     {
         return Vector3.Distance(position, transform.position) >= maxDistanceFromPlayer;
-    }
-
-    // Method to update the score (you can call this method from other scripts)
-    public void UpdateScore(int newScore)
-    {
-        score = newScore;
     }
 }
