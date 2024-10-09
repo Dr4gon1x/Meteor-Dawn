@@ -39,10 +39,10 @@ public class MeteorHandler : MonoBehaviour
 
     void Start()
     {
-        planetRadius = planet.transform.localScale.x / 2;
+        planetRadius = planet.transform.localScale.x / 2f;
 
         float distanceToPlanet = spawnDistance - planetRadius;
-        targetScaleIncrease = ((distanceToPlanet / speed) * meteorTarget.transform.localScale.x) * targetScaleOnImpact;
+        targetScaleIncrease = (meteorTarget.transform.localScale.x * targetScaleOnImpact) / (distanceToPlanet / speed);
     }
 
     void Update()
