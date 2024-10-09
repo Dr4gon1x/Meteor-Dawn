@@ -8,14 +8,16 @@ public class MeteorSpawn_VFX : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
     public float spawnRange = 600f; // Range around the start point to spawn meteors
-    public float moveSpeed = 100f; // Speed at which meteors move
+    public float moveSpeed; // Speed at which meteors move
     public GameObject impactPregab;
+    public float spawnDelay = 0.5f; // Delay between each meteor spawn
 
     private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        SpawnMeteors(15);
+        moveSpeed = Random.Range(100f, 200f);
+        StartCoroutine(SpawnMeteors(15));
         rb = GetComponent<Rigidbody>();
     }
 
@@ -26,7 +28,7 @@ public class MeteorSpawn_VFX : MonoBehaviour
         obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
     }
 
-    void SpawnMeteors(int count)
+    IEnumerator SpawnMeteors(int count)
     {
         for (int i = 0; i < count; i++)
         {
@@ -38,11 +40,18 @@ public class MeteorSpawn_VFX : MonoBehaviour
 
             var startPos = startPoint.position + randomOffset;
             GameObject vfxObj = Instantiate(vfx, startPos, Quaternion.identity) as GameObject;
-
-            var endPos = endPoint.position;
+            
+            var randomEndOffset = new Vector3(
+                Random.Range(-spawnRange, spawnRange),
+                Random.Range(-spawnRange, spawnRange),
+                Random.Range(-spawnRange, spawnRange)
+            );
+            var endPos = endPoint.position + randomEndOffset;
 
             RotateTo(vfxObj, endPos);
             StartCoroutine(MoveMeteor(vfxObj, startPos, endPos));
+
+            yield return new WaitForSeconds(spawnDelay); // Add delay between spawns
         }
     }
 
@@ -65,6 +74,7 @@ public class MeteorSpawn_VFX : MonoBehaviour
             RotateTo(meteor, endPos);
         }
     }
+
     void FixedUpdate()
     {
         if (moveSpeed != 0 && rb != null)
@@ -73,4 +83,3 @@ public class MeteorSpawn_VFX : MonoBehaviour
         }
     }
 }
-
