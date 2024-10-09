@@ -11,11 +11,11 @@ public class Obstacle : MonoBehaviour
     public GameObject planet;
 
     private int amount_of_Sten = 20; // Amount of Sten to spawn
-    public float spawnRadius = 5.01f; // Distance from the planet's surface for spawning Sten
+    private float spawnRadius = 5.01f; // Distance from the planet's surface for spawning Sten
     private float planetRadius = 5f; // Radius of the planet
-    public float minDistanceBetweenSten = 2.5f; // Minimum distance between Sten to prevent overlap
-    public float maxDistanceFromPlayer = 1f; // Maximum distance from the player to spawn Sten
-    private float lifetime = 5f;
+    private float minDistanceBetweenSten = 3f; // Minimum distance between Sten to prevent overlap
+    private float maxDistanceFromPlayer = 3f; // Maximum distance from the player to spawn Sten
+    private float lifetime = 3f;
 
     private List<Vector3> spawnedPositions = new List<Vector3>(); // List to store spawned positions
     public List<GameObject> spawnedSten = new List<GameObject>();
