@@ -17,7 +17,7 @@ public class MeteorSpawn_VFX : MonoBehaviour
     void Start()
     {
         moveSpeed = Random.Range(100f, 200f);
-        StartCoroutine(SpawnMeteors(15));
+        StartCoroutine(SpawnMeteors(25));
         rb = GetComponent<Rigidbody>();
     }
 
