@@ -5,7 +5,7 @@ public class Score : MonoBehaviour
 {
     public Text scoreText; // Reference to the UI Text component
     private float elapsedTime;
-    private int score;
+    public static int score;
 
     // Start is called before the first frame update
     void Start()
