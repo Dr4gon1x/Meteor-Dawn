@@ -466,6 +466,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sten: {fileID: 4256151119022139727, guid: 6e8dfdac729185645bc8e0c581a85b5e, type: 3}
   planet: {fileID: 1350476436}
+  spawnRadius: 5.01
+  minDistanceBetweenSten: 3
+  maxDistanceFromPlayer: 3
   spawnedSten: []
 --- !u!1 &334021845
 GameObject:

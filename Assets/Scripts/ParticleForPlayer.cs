@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class ParticleFlip : MonoBehaviour
+public class VFXParticleFlip : MonoBehaviour
 {
-    public ParticleSystem Fire; // Assign your ParticleSystem here
-    public Transform player;              // Reference to the player object
+    public VisualEffect Player_Partical_v1;  // Assign the Visual Effect Graph here
+    public Transform player;       // Reference to the player object
     public float flipMultiplier = 1.0f;   // Control how strongly particles flip in the reverse direction
 
     private Vector3 lastPosition;
@@ -19,15 +20,11 @@ public class ParticleFlip : MonoBehaviour
         // Calculate the player's movement direction
         Vector3 playerMovementDirection = player.position - lastPosition;
 
-        // Reverse the movement direction and normalize it for particle flipping
-        Vector3 reversedDirection = -playerMovementDirection.normalized * flipMultiplier;
+        // Reverse the movement direction and multiply by the flip multiplier
+        Vector3 reversedDirection = -playerMovementDirection * flipMultiplier;
 
-        // Set the velocity over lifetime for particle system to flip particles
-        var velocityOverLifetime = Fire.velocityOverLifetime;
-        velocityOverLifetime.enabled = true;
-        velocityOverLifetime.x = reversedDirection.x;
-        velocityOverLifetime.y = reversedDirection.y;
-        velocityOverLifetime.z = reversedDirection.z;
+        // Pass the reversed movement to the VFX Graph
+        Player_Partical_v1.SetVector3("PlayerReverseDirection", reversedDirection);
 
         // Update the last position of the player for the next frame
         lastPosition = player.position;
