@@ -436,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &271512050
 Transform:
   m_ObjectHideFlags: 0
@@ -1486,8 +1486,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1350476440}
   - {fileID: 271512050}
+  - {fileID: 1350476440}
   - {fileID: 554260659}
   - {fileID: 1859074726}
   m_Father: {fileID: 0}
@@ -4186,16 +4186,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859074725}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ae27f9963be2f840835a4a9d8a13990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   updateTime: 3
-  amountChangePerUpdate: 1
-  minDistanceBetweenObjects: 3
-  maxObjects: 20
-  minObjects: 15
+  amountIncrease: 3
+  amountDecrease: 4
+  distanceBetweenObjects: 6.5
+  distanceToPlayer: 4
+  spawnRadiusIncrease: 1
+  maxObjects: 15
+  minObjects: 10
+  startAmount: 5
   planet: {fileID: 1350476436}
   player: {fileID: 1155459915}
   obstaclePrefab: {fileID: 4256151119022139727, guid: 6e8dfdac729185645bc8e0c581a85b5e, type: 3}
