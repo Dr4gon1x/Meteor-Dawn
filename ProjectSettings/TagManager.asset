@@ -8,6 +8,7 @@ TagManager:
   - Planet
   - Meteor
   - Sten
+  - SoundManager
   layers:
   - Default
   - TransparentFX
