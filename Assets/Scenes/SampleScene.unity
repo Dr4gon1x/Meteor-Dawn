@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   spawnDistance: 20
-  amountPerSecond: 1
+  amountPerSecond: 30
   despawnTime: 1
   targetScaleOnImpact: 1.5
   meteorPrefab: {fileID: 6290171594966892952, guid: 21b424ff3bdacd54a96896c42e6bb9f2, type: 3}
@@ -4194,11 +4194,11 @@ MonoBehaviour:
   updateTime: 3
   amountIncrease: 3
   amountDecrease: 4
-  distanceBetweenObjects: 6.5
-  distanceToPlayer: 4
+  distanceBetweenObjects: 5.5
+  distanceToPlayer: 3
   spawnRadiusIncrease: 1
-  maxObjects: 15
-  minObjects: 10
+  maxObjects: 18
+  minObjects: 12
   startAmount: 5
   planet: {fileID: 1350476436}
   player: {fileID: 1155459915}
