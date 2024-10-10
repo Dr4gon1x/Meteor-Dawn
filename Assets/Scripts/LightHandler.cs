@@ -7,24 +7,24 @@ public class LightMovement : MonoBehaviour
     // -----------------------------------------------------------------------------------------------------------------
 
     public float angleTurnSharpness = 45f; // The amount of degrees the angle can increase/decrease within a second 
-    public float startSpeed = 15f;
+    public float speed = 25f;
 
-    float rotationX;
-    float rotationZ;
+    private float rotationX;
+    private float rotationZ;
 
-    float angle;
-    float angleTarget;
-    int angleIncreaseMultiplier;
+    private float angle;
+    private float angleTarget;
+    private int angleIncreaseMultiplier;
 
-    float speed;
-    float time = 0f;
-    float cooldown;
+    private float currentSpeed;
+    private float time = 0f;
+    private float cooldown;
 
     // -----------------------------------------------------------------------------------------------------------------
 
     void Start()
     {
-        speed = startSpeed;
+        currentSpeed = 0f;
 
         // Gives current angle a random start value between 0 and 360, and sets target angle equeal to current angle, as well as random cooldown
         angle = UnityEngine.Random.Range(0, 360);
@@ -36,7 +36,6 @@ public class LightMovement : MonoBehaviour
 
     void Update()
     {
-
         if (angle == angleTarget) // If the angle is equal to the target angle, the script will wait for the cooldown and then give a new target angle
         {
             time += Time.deltaTime;
@@ -113,8 +112,13 @@ public class LightMovement : MonoBehaviour
     {
         // Takes angle and speed and updates the light postion / rotation
 
-        rotationX = Mathf.Cos(angle * Mathf.Deg2Rad) * speed;
-        rotationZ = Mathf.Sin(angle * Mathf.Deg2Rad) * speed;
+        if (currentSpeed < speed)
+        {
+            currentSpeed += 25f * Time.deltaTime;
+        }
+
+        rotationX = Mathf.Cos(angle * Mathf.Deg2Rad) * currentSpeed;
+        rotationZ = Mathf.Sin(angle * Mathf.Deg2Rad) * currentSpeed;
 
         this.transform.Rotate(rotationX * Time.deltaTime, 0, rotationZ * Time.deltaTime);
     }

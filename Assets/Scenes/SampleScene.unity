@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleTurnSharpness: 45
-  startSpeed: 25
+  speed: 25
 --- !u!1 &1155459915
 GameObject:
   m_ObjectHideFlags: 0

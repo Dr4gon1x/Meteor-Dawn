@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private float speed;
     private Rigidbody rb;
 
+    bool w; bool s; bool a; bool d;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,19 +22,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
+        keysUpdate();
+
+        if (w)
         {
             movement += transform.forward;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (s)
         {
             movement -= transform.forward;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (a)
         {
             movement -= transform.right;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (d)
         {
             movement += transform.right;
         }
@@ -47,7 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
     void SpeedFix()
     {
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+        keysUpdate();
+
+        if ((w || s) && (a || d))
         {
             speed = (float) (Mathf.Sqrt(2) / 2) * baseSpeed;
         }
@@ -56,9 +62,17 @@ public class PlayerMovement : MonoBehaviour
             speed = baseSpeed;
         }
 
-        if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))) 
+        if ((w && s) || (a && d)) 
         {
             speed = baseSpeed;
         }
+    }
+
+    void keysUpdate()
+    {
+        w = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        s = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+        a = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+        d = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
     }
 }
