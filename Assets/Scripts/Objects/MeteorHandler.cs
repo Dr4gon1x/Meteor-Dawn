@@ -16,7 +16,7 @@ public class MeteorHandler : MonoBehaviour
 
     public GameObject meteorPrefab;
     public GameObject meteorTarget;
-    public VisualEffect Impact;
+    public GameObject Impact;
     public GameObject planet;
 
     // ----------------------------------------------------------------
@@ -32,7 +32,6 @@ public class MeteorHandler : MonoBehaviour
     private GameObject newTarget;
     public List<GameObject> targetPrefabs = new List<GameObject>();
 
-    private VisualEffect deadMeteor;
     public List<GameObject> deadPrefabs = new List<GameObject>();
     private List<float> lifeTime = new List<float>();
 
@@ -114,8 +113,11 @@ public class MeteorHandler : MonoBehaviour
             {
                 Destroy(targetPrefabs[i]);
 
-                deadMeteor = Instantiate(Impact, targetPrefabs[i].transform.position * 0.9975f, targetPrefabs[i].transform.rotation);
-                deadMeteor.transform.localScale *= targetScaleOnImpact;
+                GameObject impactObject = Instantiate(Impact, targetPrefabs[i].transform.position * 0.9975f, targetPrefabs[i].transform.rotation);
+                impactObject.GetComponent<VisualEffect>();
+                Impact.transform.localScale *= targetScaleOnImpact;
+                deadPrefabs.Add(Impact);
+                lifeTime.Add(despawnTime);
 
                 targetPrefabs.Remove(targetPrefabs[i]);
                 meteorPrefabs.Remove(meteorPrefabs[i]);
