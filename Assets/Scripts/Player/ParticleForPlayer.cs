@@ -3,30 +3,30 @@ using UnityEngine.VFX;
 
 public class VFXParticleFlip : MonoBehaviour
 {
-    public VisualEffect Player_Partical_v1;  // Assign the Visual Effect Graph here
-    public Transform player;       // Reference to the player object
-    public float flipMultiplier = 1.0f;   // Control how strongly particles flip in the reverse direction
-
-    private Vector3 lastPosition;
-
-    void Start()
-    {
-        // Initialize the player's last position
-        lastPosition = player.position;
-    }
+    public ParticleSystem ParticleSystem;
+    public Transform playerTransform;
+    public Transform Planet;
+    public float rotationSpeed = 5f;
 
     void Update()
     {
-        // Calculate the player's movement direction
-        Vector3 playerMovementDirection = player.position - lastPosition;
+        Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        // Reverse the movement direction and multiply by the flip multiplier
-        Vector3 reversedDirection = -playerMovementDirection * flipMultiplier;
+        if (movementDirection != Vector3.zero)
+        {
+            // Calculate the direction from the player to the center of the planet
+            Vector3 planetCenterDirection = (playerTransform.position - Planet.position).normalized;
 
-        // Pass the reversed movement to the VFX Graph
-        Player_Partical_v1.SetVector3("PlayerReverseDirection", reversedDirection);
+            // Calculate the right direction relative to the planet's surface
+            Vector3 rightDirection = Vector3.Cross(planetCenterDirection, Vector3.up).normalized;
 
-        // Update the last position of the player for the next frame
-        lastPosition = player.position;
+            // Calculate the forward direction relative to the planet's surface
+            Vector3 forwardDirection = Vector3.Cross(rightDirection, planetCenterDirection).normalized;
+
+            // Calculate the target rotation based on the movement direction and the planet's surface
+            Quaternion targetRotation = Quaternion.LookRotation(forwardDirection, planetCenterDirection);
+
+            ParticleSystem.transform.rotation = Quaternion.Slerp(ParticleSystem.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
     }
 }
