@@ -114,7 +114,12 @@ public class LightMovement : MonoBehaviour
 
         if (currentSpeed < speed)
         {
-            currentSpeed += 25f * Time.deltaTime;
+            currentSpeed += (25f / 2f) * Time.deltaTime;
+
+            if (currentSpeed > speed)
+            {
+                currentSpeed = speed;
+            }
         }
 
         rotationX = Mathf.Cos(angle * Mathf.Deg2Rad) * currentSpeed;
