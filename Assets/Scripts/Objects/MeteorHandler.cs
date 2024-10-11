@@ -13,6 +13,8 @@ public class MeteorHandler : MonoBehaviour
     public float amountPerSecond = 5f;
     public float despawnTime = 1f;
     public float targetScaleOnImpact = 1.5f;
+    public float distanceForTargetActivate = 30f;
+    public float spawnScaleSpeed = 2f;
 
     public GameObject meteorPrefab;
     public GameObject meteorTarget;
@@ -24,6 +26,7 @@ public class MeteorHandler : MonoBehaviour
     private float time = 0;
     private float planetRadius;
     private float targetScaleIncrease;
+    private float defaultScale;
 
     private GameObject newMeteor;
     public List<GameObject> meteorPrefabs = new List<GameObject>();
@@ -40,9 +43,10 @@ public class MeteorHandler : MonoBehaviour
     void Start()
     {
         planetRadius = planet.transform.localScale.x / 2f;
-
-        float distanceToPlanet = spawnDistance - planetRadius;
+        float distanceToPlanet = distanceForTargetActivate - planetRadius;
         targetScaleIncrease = (meteorTarget.transform.localScale.x * targetScaleOnImpact) / (distanceToPlanet / speed);
+
+        defaultScale = meteorPrefab.transform.localScale.x;
     }
 
     void Update()
@@ -73,6 +77,7 @@ public class MeteorHandler : MonoBehaviour
         // Spawn meteor and target
         newTarget = Instantiate(meteorTarget, targetPos, Quaternion.identity);
         newMeteor = Instantiate(meteorPrefab, spawnPos, Quaternion.identity);
+        newMeteor.transform.localScale = new Vector3(0, 0, 0);
         newMeteor.gameObject.tag="Meteor";
 
         newTarget.transform.LookAt(planet.transform);
@@ -89,7 +94,23 @@ public class MeteorHandler : MonoBehaviour
             {
                 Transform pos = meteorPrefabs[i].transform;
                 pos.position = Vector3.MoveTowards(pos.position, planet.transform.position, speed * Time.deltaTime);
-                targetPrefabs[i].transform.localScale = new Vector3(targetPrefabs[i].transform.localScale.x + (targetScaleIncrease * Time.deltaTime), targetPrefabs[i].transform.localScale.y + (targetScaleIncrease * Time.deltaTime), 0.1f);
+                float dist = Vector3.Distance(planet.transform.position, meteorPrefabs[i].transform.position);
+
+                if (dist <= distanceForTargetActivate)
+                {
+                    targetPrefabs[i].transform.localScale = new Vector3(targetPrefabs[i].transform.localScale.x + (targetScaleIncrease * Time.deltaTime), targetPrefabs[i].transform.localScale.y + (targetScaleIncrease * Time.deltaTime), 0.1f);
+                }
+
+                if (meteorPrefabs[i].transform.localScale.x < defaultScale)
+                {
+                    float scaleIncrease = defaultScale * spawnScaleSpeed * Time.deltaTime;
+                    meteorPrefabs[i].transform.localScale += new Vector3(scaleIncrease, scaleIncrease, scaleIncrease);
+
+                    if (meteorPrefabs[i].transform.localScale.x > defaultScale)
+                    {
+                        meteorPrefabs[i].transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
+                    }
+                }
             }
             else
             {
