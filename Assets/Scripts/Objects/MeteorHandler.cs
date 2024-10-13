@@ -16,7 +16,8 @@ public class MeteorHandler : MonoBehaviour
 
     public GameObject meteorPrefab;
     public GameObject meteorTarget;
-    public VisualEffect Impact;
+
+    [SerializeField] VisualEffect Impact;
     public GameObject planet;
 
     // ----------------------------------------------------------------
@@ -89,37 +90,37 @@ public class MeteorHandler : MonoBehaviour
         {
             if (meteorPrefabs[i] != null)
             {
-                Transform pos = meteorPrefabs[i].transform;
-                pos.position = Vector3.MoveTowards(pos.position, planet.transform.position, speed * Time.deltaTime);
-                float dist = Vector3.Distance(planet.transform.position, meteorPrefabs[i].transform.position);
+            Transform pos = meteorPrefabs[i].transform;
+            pos.position = Vector3.MoveTowards(pos.position, planet.transform.position, speed * Time.deltaTime);
+            float dist = Vector3.Distance(planet.transform.position, meteorPrefabs[i].transform.position);
 
-                if (dist <= distanceForTargetActivate)
+            if (dist <= distanceForTargetActivate)
+            {
+                targetPrefabs[i].transform.localScale = new Vector3(targetPrefabs[i].transform.localScale.x + (targetScaleIncrease * Time.deltaTime), targetPrefabs[i].transform.localScale.y + (targetScaleIncrease * Time.deltaTime), 0.1f);
+            }
+
+            if (meteorPrefabs[i].transform.localScale.x < defaultScale)
+            {
+                float scaleIncrease = defaultScale * spawnScaleSpeed * Time.deltaTime;
+                meteorPrefabs[i].transform.localScale += new Vector3(scaleIncrease, scaleIncrease, scaleIncrease);
+
+                if (meteorPrefabs[i].transform.localScale.x > defaultScale)
                 {
-                    targetPrefabs[i].transform.localScale = new Vector3(targetPrefabs[i].transform.localScale.x + (targetScaleIncrease * Time.deltaTime), targetPrefabs[i].transform.localScale.y + (targetScaleIncrease * Time.deltaTime), 0.1f);
+                meteorPrefabs[i].transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
                 }
-
-                if (meteorPrefabs[i].transform.localScale.x < defaultScale)
-                {
-                    float scaleIncrease = defaultScale * spawnScaleSpeed * Time.deltaTime;
-                    meteorPrefabs[i].transform.localScale += new Vector3(scaleIncrease, scaleIncrease, scaleIncrease);
-
-                    if (meteorPrefabs[i].transform.localScale.x > defaultScale)
-                    {
-                        meteorPrefabs[i].transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
-                    }
-                }
+            }
             }
             else
             {
-                Destroy(targetPrefabs[i]);
+            Destroy(targetPrefabs[i]);
 
-                VisualEffect impactObject = Instantiate(Impact, targetPrefabs[i].transform.position * 0.9975f, targetPrefabs[i].transform.rotation);
-                Impact.transform.localScale *= targetScaleOnImpact;
-                deadPrefabs.Add(impactObject.gameObject);
-                lifeTime.Add(despawnTime);
-
-                targetPrefabs.Remove(targetPrefabs[i]);
-                meteorPrefabs.Remove(meteorPrefabs[i]);
+            VisualEffect impact = Instantiate(Impact, targetPrefabs[i].transform.position * 0.9975f, targetPrefabs[i].transform.rotation);
+            impact.GetComponent<VisualEffect>();
+            Impact.transform.localScale *= targetScaleOnImpact;
+            impact.Play();
+            Destroy(impact.gameObject, 1f);
+            targetPrefabs.Remove(targetPrefabs[i]);
+            meteorPrefabs.Remove(meteorPrefabs[i]);
             }
         }
     }
