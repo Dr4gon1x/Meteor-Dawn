@@ -420,75 +420,6 @@ MonoBehaviour:
   EnergyIncrease: 5
   EnergyDecrease: 20
   MeteorDamage: 40
---- !u!1001 &225550405
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3159882318471097898, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3159882318471097898, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 2147483648
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899921323275567880, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_Name
-      value: Meteor_Impact_v1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899921323275567880, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024150545385572300, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
 --- !u!1 &271512049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,7 +1530,7 @@ MonoBehaviour:
   spawnScaleSpeed: 3
   meteorPrefab: {fileID: 6290171594966892952, guid: 21b424ff3bdacd54a96896c42e6bb9f2, type: 3}
   meteorTarget: {fileID: 3698277972899086417, guid: f3b503e7b97d392439c6acc9b051db66, type: 3}
-  Impact: {fileID: 4447058391750290230, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
+  Impact: {fileID: 4470193976136187371, guid: df55c6ec7efc4cf4b829fd8210ee61f9, type: 3}
   planet: {fileID: 1350476436}
   meteorPrefabs: []
   targetPrefabs: []
@@ -4567,4 +4498,3 @@ SceneRoots:
   - {fileID: 1155459923}
   - {fileID: 522267103}
   - {fileID: 1322990015}
-  - {fileID: 225550405}
