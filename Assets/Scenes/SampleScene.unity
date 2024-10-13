@@ -1530,7 +1530,7 @@ MonoBehaviour:
   spawnScaleSpeed: 3
   meteorPrefab: {fileID: 6290171594966892952, guid: 21b424ff3bdacd54a96896c42e6bb9f2, type: 3}
   meteorTarget: {fileID: 3698277972899086417, guid: f3b503e7b97d392439c6acc9b051db66, type: 3}
-  Impact: {fileID: 1905917298}
+  Impact: {fileID: 4447058391750290230, guid: a421fc06fcc78364ba23f503bd1fc356, type: 3}
   planet: {fileID: 1350476436}
   meteorPrefabs: []
   targetPrefabs: []
@@ -4308,11 +4308,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 4256151119022139727, guid: 6e8dfdac729185645bc8e0c581a85b5e, type: 3}
   obstaclePrefabs: []
   dyingPrefabs: []
---- !u!1 &1905917298 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6334959645497582669, guid: 7f5579c0f44d5244988428465933b3a2, type: 3}
-  m_PrefabInstance: {fileID: 6164401373477742052}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1917577816
 GameObject:
   m_ObjectHideFlags: 0
