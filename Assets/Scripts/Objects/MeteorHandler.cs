@@ -118,7 +118,7 @@ public class MeteorHandler : MonoBehaviour
             VisualEffect impact = Instantiate(Impact, targetPrefabs[i].transform.position * 0.9975f, targetPrefabs[i].transform.rotation);
             impact.GetComponent<VisualEffect>();
             impact.Play();
-            Destroy(impact.gameObject, 1f);
+            Destroy(impact.gameObject, 0.7f);
             targetPrefabs.Remove(targetPrefabs[i]);
             meteorPrefabs.Remove(meteorPrefabs[i]);
             }
