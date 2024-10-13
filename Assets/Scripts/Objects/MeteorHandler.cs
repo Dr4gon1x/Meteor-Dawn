@@ -125,7 +125,7 @@ public class MeteorHandler : MonoBehaviour
         }
     }
 
-    // opdatere meteoren der har ramt planeten
+    // opdatere impact efter meteor har ramt planeten
     void deadMeteorTick()
     {
         for (int i = 0; i < deadPrefabs.Count; i++)

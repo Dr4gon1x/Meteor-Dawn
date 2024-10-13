@@ -72,7 +72,7 @@ public class Obstacle2 : MonoBehaviour
     }
 
     // ----------------------------------------------------------------
-
+    // Opdatere obstacle spawns
     void spawnUpdate()
     {
         if (obstacleIncrease == true)
@@ -112,7 +112,7 @@ public class Obstacle2 : MonoBehaviour
     }
 
     // ----------------------------------------------------------------
-
+    // Spawner objekt på planeten
     private void spawnObject()
     {
         bool spawnSuccess = false;
@@ -135,6 +135,7 @@ public class Obstacle2 : MonoBehaviour
     }
 
     // ----------------------------------------------------------------
+    // Checker om man kan spawne en sten, på den givne spawn position
     bool spawnAttemptCheck(Vector3 spawnPos)
     {
         Vector3 playerPos = player.transform.position;
@@ -160,7 +161,7 @@ public class Obstacle2 : MonoBehaviour
     }
 
     // ----------------------------------------------------------------
-
+    // Opdatere obstacle positionen
     private void posUpdate()
     {
         for (int i = 0; i < obstaclePrefabs.Count; i++)
