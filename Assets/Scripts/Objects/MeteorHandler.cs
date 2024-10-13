@@ -84,6 +84,7 @@ public class MeteorHandler : MonoBehaviour
         meteorPrefabs.Add(newMeteor);
     }
 
+    // Opdatere meteor + meteor target
     void meteorTick()
     {
         for (int i = 0; i < meteorPrefabs.Count; i++)
@@ -125,6 +126,7 @@ public class MeteorHandler : MonoBehaviour
         }
     }
 
+    // opdatere meteoren der har ramt planeten
     void deadMeteorTick()
     {
         for (int i = 0; i < deadPrefabs.Count; i++)
