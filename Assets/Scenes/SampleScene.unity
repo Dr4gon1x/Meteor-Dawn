@@ -1487,8 +1487,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 271512050}
-  - {fileID: 1350476440}
   - {fileID: 554260659}
+  - {fileID: 1350476440}
   - {fileID: 1859074726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   spawnDistance: 20
-  amountPerSecond: 2
+  amountPerSecond: 15
   despawnTime: 1
   targetScaleOnImpact: 1.5
   distanceForTargetActivate: 20
