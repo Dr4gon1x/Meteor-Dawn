@@ -94,10 +94,10 @@ MonoBehaviour:
   - title: Decay
     position:
       serializedVersion: 2
-      x: 3634
+      x: 3861
       y: -376
-      width: 701
-      height: 1750
+      width: 474
+      height: 1180
     contents:
     - model: {fileID: 8926484042661614799}
       id: 0
@@ -7741,7 +7741,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614854}
   - {fileID: 8926484042661614857}
   - {fileID: 8926484042661614885}
-  m_UIPosition: {x: 3899, y: 779}
+  m_UIPosition: {x: 3898, y: 779}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7763,7 +7763,7 @@ MonoBehaviour:
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTUAndAA: 0
-  sortingPriority: 0
+  sortingPriority: -50
   m_SubOutputs: []
   colorMapping: 0
   uvMode: 0
@@ -8123,7 +8123,7 @@ MonoBehaviour:
   m_Parent: {fileID: 8926484042661614799}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614880}
@@ -8154,7 +8154,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614882}
   - {fileID: 8926484042661614883}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661614880}
   m_MasterData:

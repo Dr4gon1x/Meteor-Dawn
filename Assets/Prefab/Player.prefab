@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3059054273658892213}
   - component: {fileID: 7883808295369612610}
   - component: {fileID: 8035461277516649143}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4787044553053454915}
   - component: {fileID: 4087747219835293426}
   - component: {fileID: 8969389106118087752}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4330ad3d07a7f9a4aa4dc4547e4ad3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  baseSpeed: 5
 --- !u!114 &8969389106118087752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 721633209063401097}
   - component: {fileID: 4735176081915957304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
