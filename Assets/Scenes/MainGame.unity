@@ -418,8 +418,8 @@ MonoBehaviour:
   hitboxDecrease: 0.85
   Energy: 100
   EnergyIncrease: 5
-  EnergyDecrease: 20
-  MeteorDamage: 40
+  EnergyDecrease: 15
+  MeteorDamage: 30
 --- !u!1 &271512049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,7 +4671,39 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
+          key1: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+          key2: {r: 0.42352945, g: 0.42352945, b: 0.42352945, a: 0.9588346}
+          key3: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0.9577465}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 11951
+          ctime1: 26600
+          ctime2: 48380
+          ctime3: 57054
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 5975
+          atime2: 47609
+          atime3: 58596
+          atime4: 65535
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: -1
+          m_NumColorKeys: 4
+          m_NumAlphaKeys: 5
+        m_Name: Color Gradient
+        m_Overridden: 1
     m_NamedObject:
       m_Array: []
     m_Bool:
