@@ -8,10 +8,11 @@ public class Meteor : MonoBehaviour
     {
         if (other.CompareTag("Meteor"))
         {
-            // GameObject sm = GameObject.FindGameObjectWithTag("SoundManager");
-            // if(sm != null) {
-            //     sm.GetComponent<SoundManager>().PlaySound(SoundManager.SoundEffects.Meteor);
-            // }
+            //GameObject sm = GameObject.FindGameObjectWithTag("SoundManager");
+            //if (sm != null)
+            //{
+            //    sm.GetComponent<SoundManager>().PlaySound(SoundManager.SoundEffects.Meteor);
+            //}
             Destroy(other.gameObject);
         }
 
