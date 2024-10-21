@@ -12,7 +12,7 @@ public class Obstacle2 : MonoBehaviour
     public float updateTime = 3f;
     public int amountIncrease = 3;
     public int amountDecrease = 4;
-    public float distanceBetweenObjects = 6.5f;
+    public float distanceBetweenObjects = 2.5f;
     public float distanceToPlayer = 4f;
     public float spawnHeightIncrease = 1f;
     public int maxObjects = 15;
@@ -26,12 +26,21 @@ public class Obstacle2 : MonoBehaviour
     public GameObject player;
     public GameObject obstaclePrefab;
 
+    public int objectIncrease = 3;
+    public float scaleIncrease = 0.1f;
+    public float maxScale = 1.5f;
+    public float prefabStartScale = 3f;
+    public float timeBeforeStart = 5f;
+
     // ----------------------------------------------------------------
 
     private float spawnDistanceFromPlanet;
-    private float prefabWidth;
     private float time = 0;
+    private float startCooldown = 0;
+    private float objectScaleMultiplier = 1f;
     private bool obstacleIncrease = true;
+    private bool startAmountSpawned = false;
+    private int obstacleThredshold = 100;
 
     // ----------------------------------------------------------------
 
@@ -45,29 +54,39 @@ public class Obstacle2 : MonoBehaviour
 
     void Start()
     {
-        prefabWidth = obstaclePrefab.transform.localScale.x;
+        float scaleDiff = prefabStartScale / obstaclePrefab.transform.localScale.x;
+        obstaclePrefab.transform.localScale *= scaleDiff;
 
         spawnDepth += 1f;
 
         spawnDistanceFromPlanet = (planet.transform.localScale.x + spawnHeightIncrease) / 2;
-
-        for (int i = 0; i < startAmount; i++)
-        {
-            spawnObject();
-            obstaclePrefabs[i].transform.position *= spawnOffset[i];
-            spawnOffset[i] = 1f;
-        }
     }
 
     void Update()
     {
-        posUpdate();
-
-        time += Time.deltaTime;
-        if (time >= updateTime)
+        if (startCooldown < timeBeforeStart)
         {
-            spawnUpdate();
-            time = 0;
+            startCooldown += Time.deltaTime;
+        } else
+        {
+            if (startAmountSpawned == false)
+            {
+                for (int i = 0; i < startAmount; i++)
+                {
+                    spawnObject();
+                }
+
+                startAmountSpawned = true;
+            }
+
+            time += Time.deltaTime;
+            if (time >= updateTime && obstaclePrefabs.Count < obstacleThredshold)
+            {
+                spawnUpdate();
+                time = 0;
+            }
+
+            posUpdate();
         }
     }
 
@@ -85,13 +104,14 @@ public class Obstacle2 : MonoBehaviour
             if (obstaclePrefabs.Count >= maxObjects)
             {
                 obstacleIncrease = false;
+                difficultyHandler();
             }
 
         } else if (obstacleIncrease == false)
         {
             for (int i = 0; i < Mathf.Round(time / updateTime) * amountDecrease; i++)
             {
-                int randomObject = Random.Range(0, obstaclePrefabs.Count - 1);
+                int randomObject = Random.Range(0, obstaclePrefabs.Count);
                 dyingPrefabs.Add(obstaclePrefabs[randomObject]);
                 deathOffset.Add(1f);
                 obstaclePrefabs.RemoveAt(randomObject);;
@@ -107,6 +127,7 @@ public class Obstacle2 : MonoBehaviour
             if (obstaclePrefabs.Count <= minObjects)
             {
                 obstacleIncrease = true;
+                difficultyHandler();
             }
         }
     }
@@ -141,17 +162,31 @@ public class Obstacle2 : MonoBehaviour
         Vector3 playerPos = player.transform.position;
 
         float dist = Vector3.Distance(playerPos, spawnPos);
+        float prefrabWidth = obstaclePrefab.transform.localScale.x;
 
         if (dist < distanceToPlayer)
         {
             return false;
         }
 
-        foreach (GameObject obstaclePrefab in obstaclePrefabs)
+        foreach (GameObject obstacle in obstaclePrefabs)
         {
-            dist = Vector3.Distance(obstaclePrefab.transform.position, spawnPos);
+            dist = Vector3.Distance(obstacle.transform.position, planet.transform.position);
 
-            if (prefabWidth / 2 * 1.5f < dist && dist < distanceBetweenObjects)
+            Vector3 pos; // This if statement changes the gameobjects pos to its spawnpos, if it's underground due to just having spawned.
+            if (dist < spawnDistanceFromPlanet)
+            {
+                float multiplyPos = spawnDistanceFromPlanet / dist;
+                pos = obstacle.transform.position * multiplyPos;
+            } else
+            {
+                pos = obstacle.transform.position;
+            }
+
+            dist = Vector3.Distance(pos, spawnPos);
+            float obstacleWidth = obstacle.transform.localScale.x;
+
+            if (obstacleWidth * 0.75f < dist && dist < (prefrabWidth + obstacleWidth) / 2 + distanceBetweenObjects)
             {
                 return false;
             }
@@ -217,6 +252,51 @@ public class Obstacle2 : MonoBehaviour
                 Destroy(dyingPrefabs[i]);
                 dyingPrefabs.RemoveAt(i);
                 deathOffset.RemoveAt(i);
+            }
+        }
+    }
+
+    // ----------------------------------------------------------------
+    /* Increases obstacle amount and size. When maxObjects is reached, it will increase maxObject. 
+     * When minObjects is reached, it will be increase with half as much as maxObjects is increased. 
+     * If increase is odd number like 3, then it increase with 1 with a 50% chance of increasing by 2.
+     * When min is reached, size of prefabs is also increased, as well as distance to player. */
+
+    void difficultyHandler()
+    {
+        if (obstaclePrefabs.Count >= maxObjects)
+        {
+            maxObjects += objectIncrease;
+            Debug.Log("Max: " + maxObjects);
+        }
+        else if (obstaclePrefabs.Count <= minObjects)
+        {
+            minObjects += Mathf.RoundToInt(objectIncrease / 2);
+            if (minObjects % 2 == 0 && Random.value < 0.5f)
+            {
+                minObjects += 1;
+            }
+
+            Debug.Log("Min: " + minObjects);
+
+            if (objectScaleMultiplier < maxScale)
+            {
+                obstaclePrefab.transform.localScale /= objectScaleMultiplier;
+                distanceToPlayer /= objectScaleMultiplier;
+                spawnHeightIncrease /= objectScaleMultiplier;
+                spawnDepth /= objectScaleMultiplier;
+
+                objectScaleMultiplier += scaleIncrease;
+
+                if (objectScaleMultiplier > maxScale)
+                {
+                    objectScaleMultiplier = maxScale;
+                }
+
+                obstaclePrefab.transform.localScale *= objectScaleMultiplier;
+                distanceToPlayer *= objectScaleMultiplier;
+                spawnHeightIncrease *= objectScaleMultiplier;
+                spawnDepth *= objectScaleMultiplier;
             }
         }
     }

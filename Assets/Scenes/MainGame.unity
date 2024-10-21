@@ -4406,18 +4406,23 @@ MonoBehaviour:
   updateTime: 3
   amountIncrease: 3
   amountDecrease: 4
-  distanceBetweenObjects: 5.5
+  distanceBetweenObjects: 2.5
   distanceToPlayer: 4.5
   spawnHeightIncrease: 1
-  maxObjects: 18
-  minObjects: 12
+  maxObjects: 20
+  minObjects: 10
   startAmount: 5
   spawnDepth: 0.2
-  rotateSpeed: 360
-  moveSpeed: 2
+  rotateSpeed: 270
+  moveSpeed: 1.5
   planet: {fileID: 1350476436}
   player: {fileID: 1155459915}
   obstaclePrefab: {fileID: 4256151119022139727, guid: 6e8dfdac729185645bc8e0c581a85b5e, type: 3}
+  objectIncrease: 3
+  scaleIncrease: 0.1
+  maxScale: 1.75
+  prefabStartScale: 3
+  timeBeforeStart: 10
   obstaclePrefabs: []
   dyingPrefabs: []
 --- !u!1 &1917577816
