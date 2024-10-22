@@ -17,12 +17,17 @@ public class MeteorHandler : MonoBehaviour
     public GameObject meteorPrefab;
     public GameObject meteorTarget;
 
+    public float timeBeforeStart = 1f;
+    public float amountIncreasePerSecond = 0.2f;
+    public float maxMeteorAmount = 60f;
+
     [SerializeField] VisualEffect Impact;
     public GameObject planet;
 
     // ----------------------------------------------------------------
 
     private float time = 0;
+    private float startCooldown = 0;
     private float planetRadius;
     private float targetScaleIncrease;
     private float defaultScale;
@@ -49,21 +54,29 @@ public class MeteorHandler : MonoBehaviour
 
     void Update()
     {
-        // Spawns new meteor
-        time += Time.deltaTime;
-        if (time >= (1f / amountPerSecond))
+        if (startCooldown < timeBeforeStart)
         {
-            for (int i = 0; i < Mathf.Round(time / (1f / amountPerSecond)); i++)
+            startCooldown += Time.deltaTime;
+        } else
+        {
+            difficultyHandler(); // Increases meteor amount
+
+            // Spawns new meteor
+            time += Time.deltaTime;
+            if (time >= (1f / amountPerSecond))
             {
-                spawnNewMeteor();
+                for (int i = 0; i < Mathf.Round(time / (1f / amountPerSecond)); i++)
+                {
+                    spawnNewMeteor();
+                }
+
+                time = 0;
             }
 
-            time = 0;
+            // Updates meteor
+            meteorTick();
+            deadMeteorTick();
         }
-
-        // Updates meteor
-        meteorTick();
-        deadMeteorTick();
     }
 
     void spawnNewMeteor()
@@ -142,6 +155,17 @@ public class MeteorHandler : MonoBehaviour
                 deadPrefabs.Remove(deadPrefabs[i]);
                 lifeTime.Remove(lifeTime[i]);
             }
+        }
+    }
+
+    void difficultyHandler()
+    {
+        if (amountPerSecond <= maxMeteorAmount)
+        {
+            amountPerSecond += amountIncreasePerSecond * Time.deltaTime;
+        } else
+        {
+            amountPerSecond = maxMeteorAmount;
         }
     }
 }
