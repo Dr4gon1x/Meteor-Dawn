@@ -4422,7 +4422,7 @@ MonoBehaviour:
   scaleIncrease: 0.1
   maxScale: 1.75
   prefabStartScale: 3
-  timeBeforeStart: 10
+  timeBeforeStart: 5
   obstaclePrefabs: []
   dyingPrefabs: []
 --- !u!1 &1917577816
