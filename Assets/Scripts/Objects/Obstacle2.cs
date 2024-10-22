@@ -267,7 +267,6 @@ public class Obstacle2 : MonoBehaviour
         if (obstaclePrefabs.Count >= maxObjects)
         {
             maxObjects += objectIncrease;
-            Debug.Log("Max: " + maxObjects);
         }
         else if (obstaclePrefabs.Count <= minObjects)
         {
@@ -276,8 +275,6 @@ public class Obstacle2 : MonoBehaviour
             {
                 minObjects += 1;
             }
-
-            Debug.Log("Min: " + minObjects);
 
             if (objectScaleMultiplier < maxScale)
             {
