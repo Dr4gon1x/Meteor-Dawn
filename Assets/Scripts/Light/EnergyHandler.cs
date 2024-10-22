@@ -2,16 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static UnityEngine.EventSystems.EventTrigger;
+using System.Security.Cryptography;
 
 public class EnergyHandler : MonoBehaviour
 {
 
     public GameObject Light;
     public GameObject LightHolder;
-    public GameObject EnergyBar;
+    public GameObject HaveEnergy;
+    public GameObject NoEnergy;
+    public GameObject Player;
 
     public Camera Camera;
 
+    public int NumOfObjects = 12;
+
+    public float placePlayer = 0.75f;
     public float hitboxDecrease = 0.85f;
     public float Energy = 100;
     public float EnergyIncrease = 10;
@@ -21,10 +27,17 @@ public class EnergyHandler : MonoBehaviour
     private bool IsInside;
     private float fovValue;
 
+    private GameObject[] energyindikatorer;
+    
     void Start()
     {
+
+        energyindikatorer = new GameObject[NumOfObjects];
+        EnergyObjektSpawner();
+
         ResizeAndPos();
         UpdateFOV();
+
     }
 
     void Update()
@@ -47,11 +60,14 @@ public class EnergyHandler : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        EnergyBar.GetComponent<Image>().fillAmount = Energy / 100;
+        //Opdatere alle energi indikatorerne på spilleren
+        UpdateEnergyDisplay(Energy);
 
         MeteorCollide();
 
         UpdateFOV();
+
+        
     }
     
     void OnTriggerEnter (Collider other)
@@ -89,7 +105,7 @@ public class EnergyHandler : MonoBehaviour
         if (distance > r || lightAngle >= 90)
         {
             /* Jeg orkede ikke at skrive et script for hvis lyskeglens sider ikke r�r planeten. 
-             * Jeg g�r ikke ud fra at lyset skal v�re s� stort. */
+             * Jeg går ikke ud fra at lyset skal være så stort. */
             energyDiameter = 0;
             energyPos = 0;
         } else
@@ -117,5 +133,80 @@ public class EnergyHandler : MonoBehaviour
         {
             Energy -= MeteorDamage;
         }
+    }
+
+    //***************************************************************************//
+    //        Spawner Energi indikatorerne ligeligt fordelt på spilleren         //
+    //***************************************************************************//
+    public void EnergyObjektSpawner()
+    {
+        float VinkelTrin = 360f/NumOfObjects;
+
+        Vector3 center = Player.transform.position;
+
+        for(int i = 0; i < NumOfObjects; i++){
+            
+            float vinkel = i * VinkelTrin + 90;
+
+            float radianer = vinkel * Mathf.Deg2Rad;
+
+            float x = Mathf.Cos(radianer) * placePlayer;
+            float z = Mathf.Sin(radianer) * placePlayer;
+            Vector3 positionOnPlayer = new Vector3(center.x + x, center.y + 0.03f, center.z + z);
+
+            GameObject indicator = Instantiate(HaveEnergy, positionOnPlayer, Quaternion.identity);
+            indicator.transform.parent = Player.transform;
+            indicator.transform.LookAt(center);
+
+            energyindikatorer[i] = indicator;
+        }
+
+    }
+    //***************************************************************************************//
+    // Holder styr på hvilke af indikatorerne der skal være "aktive" og hvilke der ikke skal //
+    //***************************************************************************************//
+    public void UpdateEnergyDisplay(float playerEnergy)
+    {
+
+        int activeSegments = Mathf.RoundToInt((Energy / 100f) * NumOfObjects);
+
+
+        for (int i = 0; i < NumOfObjects; i++)
+        {
+            if (i < activeSegments)
+            {
+                if (energyindikatorer[i].name != HaveEnergy.name + "(Clone)")
+                {
+                    ReplaceSegment(i, HaveEnergy);
+                }
+            }
+            else
+            {
+
+                if (energyindikatorer[i].name != NoEnergy.name + "(Clone)")
+                {
+                    ReplaceSegment(i, NoEnergy);
+                }
+            }
+        }
+    }
+
+    //***************************************************************************//
+    //          Opdatere og erstatter de forskellige energi indikatorer          //
+    //***************************************************************************//
+
+    void ReplaceSegment(int index, GameObject newPrefab)
+    {
+
+        Vector3 existingPosition = energyindikatorer[index].transform.position;
+        Quaternion existingRotation = energyindikatorer[index].transform.rotation;
+
+        Destroy(energyindikatorer[index]);
+
+        GameObject nyIndikator = Instantiate(newPrefab, existingPosition, existingRotation);
+
+        nyIndikator.transform.parent = Player.transform;
+
+        energyindikatorer[index] = nyIndikator;
     }
 }
