@@ -29,7 +29,6 @@ public class Obstacle2 : MonoBehaviour
     public int objectIncrease = 3;
     public float scaleIncrease = 0.1f;
     public float maxScale = 1.5f;
-    public float prefabStartScale = 3f;
     public float timeBeforeStart = 5f;
 
     // ----------------------------------------------------------------
@@ -54,9 +53,6 @@ public class Obstacle2 : MonoBehaviour
 
     void Start()
     {
-        float scaleDiff = prefabStartScale / obstaclePrefab.transform.localScale.x;
-        obstaclePrefab.transform.localScale *= scaleDiff;
-
         spawnDepth += 1f;
 
         spawnDistanceFromPlanet = (planet.transform.localScale.x + spawnHeightIncrease) / 2;
@@ -146,6 +142,7 @@ public class Obstacle2 : MonoBehaviour
 
                 newObstacle.transform.LookAt(planet.transform);
                 newObstacle.transform.Rotate(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
+                newObstacle.transform.localScale *= objectScaleMultiplier; // Increases scale
 
                 obstaclePrefabs.Add(newObstacle);
                 spawnOffset.Add(spawnDepth);
@@ -278,7 +275,6 @@ public class Obstacle2 : MonoBehaviour
 
             if (objectScaleMultiplier < maxScale)
             {
-                obstaclePrefab.transform.localScale /= objectScaleMultiplier;
                 distanceToPlayer /= objectScaleMultiplier;
                 spawnHeightIncrease /= objectScaleMultiplier;
                 spawnDepth /= objectScaleMultiplier;
@@ -290,7 +286,6 @@ public class Obstacle2 : MonoBehaviour
                     objectScaleMultiplier = maxScale;
                 }
 
-                obstaclePrefab.transform.localScale *= objectScaleMultiplier;
                 distanceToPlayer *= objectScaleMultiplier;
                 spawnHeightIncrease *= objectScaleMultiplier;
                 spawnDepth *= objectScaleMultiplier;

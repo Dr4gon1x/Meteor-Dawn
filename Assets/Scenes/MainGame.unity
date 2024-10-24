@@ -4238,7 +4238,6 @@ MonoBehaviour:
   objectIncrease: 5
   scaleIncrease: 0.1
   maxScale: 1.75
-  prefabStartScale: 3
   timeBeforeStart: 5
   obstaclePrefabs: []
   dyingPrefabs: []
@@ -4260,7 +4259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1917577817
 RectTransform:
   m_ObjectHideFlags: 0
