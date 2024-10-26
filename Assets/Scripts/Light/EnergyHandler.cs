@@ -144,6 +144,7 @@ public class EnergyHandler : MonoBehaviour
 
         Vector3 center = Player.transform.position;
 
+        //  Beregner hver indikators position og spawner dem på spilleren, det bliver beregnet som positionen på en cirkel, da vores spiller er cirkulær  //
         for(int i = 0; i < NumOfObjects; i++){
             
             float vinkel = i * VinkelTrin + 90;
@@ -162,15 +163,17 @@ public class EnergyHandler : MonoBehaviour
         }
 
     }
+
     //***************************************************************************************//
     // Holder styr på hvilke af indikatorerne der skal være "aktive" og hvilke der ikke skal //
     //***************************************************************************************//
     public void UpdateEnergyDisplay(float playerEnergy)
     {
 
+    //  Beregner hvor mange "aktive" indikatorer der skal være //
         int activeSegments = Mathf.RoundToInt((Energy / 100f) * NumOfObjects);
 
-
+    //  finder ud af om indikatoren skal være "aktiv" eller ej
         for (int i = 0; i < NumOfObjects; i++)
         {
             if (i < activeSegments)
@@ -197,10 +200,11 @@ public class EnergyHandler : MonoBehaviour
 
     void ReplaceSegment(int index, GameObject newPrefab)
     {
-
+    //  position og rotation af den eksisterende indikator
         Vector3 existingPosition = energyindikatorer[index].transform.position;
         Quaternion existingRotation = energyindikatorer[index].transform.rotation;
 
+    //  Fjerner det nuværende seegment og tilføjer det nye
         Destroy(energyindikatorer[index]);
 
         GameObject nyIndikator = Instantiate(newPrefab, existingPosition, existingRotation);
