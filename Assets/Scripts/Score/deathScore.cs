@@ -1,18 +1,23 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
-public class deathScore : MonoBehaviour
+public class DeathScore : MonoBehaviour
 {
     public TMP_Text currentScore;
-    public static int highscore;
     public TMP_Text highscoreText;
+    public static int highscore;
 
     void Start()
     {
+        // Load the high score from PlayerPrefs
+        highscore = PlayerPrefs.GetInt("Highscore", 0);
+
+        // Update high score if current score is greater
         if (Score.score > highscore)
         {
             highscore = Score.score;
+            PlayerPrefs.SetInt("Highscore", highscore);
+            PlayerPrefs.Save(); // Ensure it saves immediately
         }
 
         currentScore.text = "SCORE: " + Score.score.ToString();
