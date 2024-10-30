@@ -159,7 +159,7 @@ public class Obstacle2 : MonoBehaviour
         Vector3 playerPos = player.transform.position;
 
         float dist = Vector3.Distance(playerPos, spawnPos);
-        float prefrabWidth = obstaclePrefab.transform.localScale.x;
+        float currentWidth = obstaclePrefab.transform.localScale.x * objectScaleMultiplier;
 
         if (dist < distanceToPlayer)
         {
@@ -183,7 +183,7 @@ public class Obstacle2 : MonoBehaviour
             dist = Vector3.Distance(pos, spawnPos);
             float obstacleWidth = obstacle.transform.localScale.x;
 
-            if (obstacleWidth * 0.75f < dist && dist < (prefrabWidth + obstacleWidth) / 2 + distanceBetweenObjects)
+            if (obstacleWidth * 0.75f < dist && dist < (currentWidth + obstacleWidth) / 2 + distanceBetweenObjects)
             {
                 return false;
             }
