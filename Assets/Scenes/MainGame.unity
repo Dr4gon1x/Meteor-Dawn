@@ -1503,16 +1503,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   spawnDistance: 20
-  amountPerSecond: 20
+  amountPerSecond: 3
   despawnTime: 1
   targetScaleOnImpact: 1.5
   distanceForTargetActivate: 20
   spawnScaleSpeed: 3
   meteorPrefab: {fileID: 6290171594966892952, guid: 21b424ff3bdacd54a96896c42e6bb9f2, type: 3}
   meteorTarget: {fileID: 3698277972899086417, guid: f3b503e7b97d392439c6acc9b051db66, type: 3}
-  timeBeforeStart: 0
-  amountIncreasePerSecond: 0
-  maxMeteorAmount: 20
+  timeBeforeStart: 0.5
+  amountIncreasePerSecond: 0.2
+  maxMeteorAmount: 60
   Impact: {fileID: 4470193976136187371, guid: df55c6ec7efc4cf4b829fd8210ee61f9, type: 3}
   planet: {fileID: 1350476436}
   meteorPrefabs: []
