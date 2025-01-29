@@ -19,7 +19,7 @@ public class Score : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-        score = Mathf.FloorToInt(elapsedTime*100);
+        score = Mathf.FloorToInt(elapsedTime*120);
         UpdateScoreText();
     }
 
