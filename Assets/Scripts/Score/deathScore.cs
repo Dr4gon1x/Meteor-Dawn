@@ -7,20 +7,26 @@ public class DeathScore : MonoBehaviour
     public TMP_Text highscoreText;
     public static int highscore;
 
+    private int score;
+    
+
     void Start()
     {
         // Load the high score from PlayerPrefs
         highscore = PlayerPrefs.GetInt("Highscore", 0);
 
+        // Get the current score from the Score class
+        score = Score.score;
+
         // Update high score if current score is greater
-        if (Score.score > highscore)
+        if (score > highscore)
         {
-            highscore = Score.score;
+            highscore = score;
             PlayerPrefs.SetInt("Highscore", highscore);
             PlayerPrefs.Save(); // Ensure it saves immediately
         }
 
-        currentScore.text = "SCORE: " + Score.score.ToString();
+        currentScore.text = "SCORE: " + score.ToString();
         highscoreText.text = "HIGHSCORE: " + highscore.ToString();
     }
 }

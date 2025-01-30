@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-    public Text scoreText; // Reference to the UI Text component
+    public TextMeshPro scoreText; // Reference to the TextMeshProUGUI component
     private float elapsedTime;
     public static int score;
 
@@ -19,7 +19,7 @@ public class Score : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-        score = Mathf.FloorToInt(elapsedTime*120);
+        score = Mathf.FloorToInt(elapsedTime * 120);
         UpdateScoreText();
     }
 
